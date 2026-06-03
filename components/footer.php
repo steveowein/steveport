@@ -10,10 +10,7 @@
                 <p class="footer-text">
                     Information Systems Student and UI Designer. Focused on building high-performance, aesthetically exceptional digital experiences.
                 </p>
-                <div class="newsletter-form mt-4">
-                    <input type="email" placeholder="Subscribe to newsletter">
-                    <button type="submit"><i class="fas fa-arrow-right"></i></button>
-                </div>
+
             </div>
             
             <div class="col-lg-2 offset-lg-1">
@@ -49,10 +46,13 @@
             <div>
                 &copy; <?= date('Y') ?> STEVE OWEIN. ALL RIGHTS RESERVED.
             </div>
-            <div class="social-icons-footer">
-                <a href="<?= htmlspecialchars($personal_info['linkedin'] ?? '#') ?>" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-figma"></i></a>
+            <div class="social-icons-footer d-flex gap-3">
+                <?php if (!empty($personal_info['linkedin'])): ?>
+                    <a href="<?= htmlspecialchars($personal_info['linkedin']) ?>" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <?php endif; ?>
+                <?php if (!empty($personal_info['github'])): ?>
+                    <a href="<?= htmlspecialchars($personal_info['github']) ?>" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+                <?php endif; ?>
             </div>
         </div>
     </div>

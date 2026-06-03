@@ -48,7 +48,12 @@ $personal_info = $info_result->fetch_assoc();
         </div>
         
         <div class="d-none d-lg-flex align-items-center">
-            <a href="<?= htmlspecialchars($personal_info['linkedin'] ?? '#') ?>" class="text-white me-3 fs-5"><i class="fab fa-linkedin-in"></i></a>
+            <?php if (!empty($personal_info['linkedin'])): ?>
+                <a href="<?= htmlspecialchars($personal_info['linkedin']) ?>" class="text-white me-3 fs-5" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <?php endif; ?>
+            <?php if (!empty($personal_info['github'])): ?>
+                <a href="<?= htmlspecialchars($personal_info['github']) ?>" class="text-white me-4 fs-5" target="_blank"><i class="fab fa-github"></i></a>
+            <?php endif; ?>
             <a class="btn-cta-header" href="<?= $base_url ?>/contact">Contact Me</a>
         </div>
     </div>

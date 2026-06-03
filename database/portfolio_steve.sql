@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 25, 2026 at 02:32 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: sql213.infinityfree.com
+-- Generation Time: Jun 02, 2026 at 09:50 PM
+-- Server version: 11.4.12-MariaDB
+-- PHP Version: 7.2.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `portfolio_steve`
+-- Database: `if0_42011510_portfolio_steve`
 --
 
 -- --------------------------------------------------------
@@ -44,7 +45,7 @@ CREATE TABLE `certificates` (
 
 INSERT INTO `certificates` (`id`, `title`, `issuer`, `month`, `year`, `image`, `keywords`, `description`) VALUES
 (1, 'Shielded Metal Arc Welding (SMAW) NC II', 'TESDA - Grade 12', 'May', '2024', NULL, 'SMAW, Welding, Technical', 'National Certificate II in Shielded Metal Arc Welding.'),
-(2, 'Research Presentation Certificate – Perceived Learning Outcomes Study', 'Davao del Norte State College – Institute of Computing', 'May', '2026', 'cert_6a139833bd917.png', 'Research Presentation, Academic Research, Online Learning, Learning Outcomes, BSIT, Public Presentation, Communication Skills, Research Skills', 'Awarded a Certificate of Recognition for successfully presenting a research study during the Public Research Colloquium 2026, demonstrating skills in research analysis, communication, and presentation.');
+(2, 'Research Presentation Certificate Perceived Learning Outcomes Study', 'Davao del Norte State College Institute of Computing', 'May', '2026', 'cert_6a139833bd917.png', 'Research Presentation, Academic Research, Online Learning, Learning Outcomes, BSIT, Public Presentation, Communication Skills, Research Skills', 'Awarded a Certificate of Recognition for successfully presenting a research study during the Public Research Colloquium 2026, demonstrating skills in research analysis, communication, and presentation.');
 
 -- --------------------------------------------------------
 
@@ -126,7 +127,7 @@ CREATE TABLE `personal_info` (
 --
 
 INSERT INTO `personal_info` (`id`, `full_name`, `address`, `contact_number`, `email`, `linkedin`, `career_objective`, `profile_image`, `hero_title`, `hero_tagline`) VALUES
-(1, 'STEVE OWEIN G. PRESIDENTE', 'Balagunan, Sto. Tomas, Davao del Norte', '0993-461-7106', 'steveoweinpresidente@gmail.com', 'https://www.linkedin.com/in/steve-owein-presidente-68b28a409', 'Motivated Bachelor of Science in Information Systems student with practical experience in technical tasks, simple UI design in Figma, and SMAW operations. Desire to use problem solving, adaptability and teamwork skills in a professional setting, and to acquire industry experience and help the organization grow.', 'steve.jpg', NULL, NULL);
+(1, 'STEVE OWEIN G. PRESIDENTE', 'Balagunan, Sto. Tomas, Davao del Norte', '0993-461-7106', 'steveoweinpresidente@gmail.com', 'https://www.linkedin.com/in/steve-owein-presidente-68b28a409/', 'Motivated Bachelor of Science in Information Systems student with practical experience in technical tasks, simple UI design in Figma, and SMAW operations. Desire to use problem solving, adaptability and teamwork skills in a professional setting, and to acquire industry experience and help the organization grow.', 'steve.jpg', '', '');
 
 -- --------------------------------------------------------
 
@@ -145,6 +146,13 @@ CREATE TABLE `portfolio` (
   `project_date` varchar(50) DEFAULT NULL,
   `additional_images` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `portfolio`
+--
+
+INSERT INTO `portfolio` (`id`, `title`, `description`, `image`, `link`, `tech_stack`, `client`, `project_date`, `additional_images`) VALUES
+(1, 'Moto Dealership Sales & Loan Inventory System ', 'Assisted in designing the prototype using Figma. Participated in extensive Project Planning and Presentation. Helped to organize system flow and interface architecture design.', 'port_6a1696c33c937.jpg', 'https://www.figma.com/design/5ILnn7oslopyDY3jC3nHoG/MotoDealership-System?node-id=0-1&p=f&t=EMVtTsjDqxOuVN8x-0', '', '', '2026', NULL);
 
 -- --------------------------------------------------------
 
@@ -233,7 +241,23 @@ CREATE TABLE `visitors` (
 --
 
 INSERT INTO `visitors` (`id`, `ip_address`, `visit_date`, `visits`) VALUES
-(1, '::1', '2026-05-25', 158);
+(1, '::1', '2026-05-25', 158),
+(2, '49.145.208.222', '2026-05-24', 52),
+(3, '49.145.212.150', '2026-05-24', 17),
+(4, '49.145.218.195', '2026-05-24', 1),
+(5, '49.145.208.222', '2026-05-25', 1),
+(6, '49.145.212.150', '2026-05-25', 13),
+(7, '49.145.208.222', '2026-05-26', 1),
+(8, '49.145.212.150', '2026-05-27', 34),
+(9, '74.125.213.42', '2026-05-27', 1),
+(10, '184.72.115.35', '2026-05-27', 1),
+(11, '131.226.112.133', '2026-05-28', 24),
+(12, '49.145.212.150', '2026-05-28', 3),
+(13, '120.28.222.116', '2026-05-30', 6),
+(14, '131.226.112.253', '2026-06-01', 31),
+(15, '131.226.112.91', '2026-06-02', 18),
+(16, '131.226.112.245', '2026-06-02', 3),
+(17, '49.145.208.222', '2026-06-02', 11);
 
 --
 -- Indexes for dumped tables
@@ -337,7 +361,7 @@ ALTER TABLE `personal_info`
 -- AUTO_INCREMENT for table `portfolio`
 --
 ALTER TABLE `portfolio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `services`
@@ -361,7 +385,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `visitors`
 --
 ALTER TABLE `visitors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

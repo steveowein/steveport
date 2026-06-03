@@ -81,25 +81,30 @@ $conn->query("CREATE TABLE IF NOT EXISTS messages (id INT(11) AUTO_INCREMENT PRI
 $conn->query("CREATE TABLE IF NOT EXISTS visitors (id INT(11) AUTO_INCREMENT PRIMARY KEY, ip_address VARCHAR(50), visit_date DATE, visits INT DEFAULT 1)");
 
 
-// Gracefully alter tables to support new admin features if they don't exist yet
-try {
-    @$conn->query("ALTER TABLE skills ADD COLUMN level INT DEFAULT 0");
-    @$conn->query("ALTER TABLE skills ADD COLUMN icon_image VARCHAR(255)");
-    @$conn->query("ALTER TABLE skills ADD COLUMN icon_class VARCHAR(100)");
-    @$conn->query("ALTER TABLE certificates ADD COLUMN month VARCHAR(20)");
-    @$conn->query("ALTER TABLE certificates ADD COLUMN year VARCHAR(10)");
-    @$conn->query("ALTER TABLE certificates ADD COLUMN image VARCHAR(255)");
-    @$conn->query("ALTER TABLE certificates ADD COLUMN keywords VARCHAR(255)");
-    @$conn->query("ALTER TABLE certificates ADD COLUMN description TEXT");
-    @$conn->query("ALTER TABLE portfolio ADD COLUMN tech_stack VARCHAR(255)");
-    @$conn->query("ALTER TABLE portfolio ADD COLUMN client VARCHAR(255)");
-    @$conn->query("ALTER TABLE portfolio ADD COLUMN project_date VARCHAR(50)");
-    @$conn->query("ALTER TABLE portfolio ADD COLUMN additional_images TEXT");
-    @$conn->query("ALTER TABLE personal_info ADD COLUMN hero_title VARCHAR(255)");
-    @$conn->query("ALTER TABLE personal_info ADD COLUMN hero_tagline VARCHAR(255)");
-} catch (mysqli_sql_exception $e) {
-    // Ignore duplicate column errors during development
+// Helper function for graceful alter tables
+function add_column_if_not_exists(mysqli $conn, string $table, string $column_def) {
+    try {
+        @$conn->query("ALTER TABLE $table ADD COLUMN $column_def");
+    } catch (Exception $e) {
+        // Ignore errors
+    }
 }
+
+add_column_if_not_exists($conn, 'skills', 'level INT DEFAULT 0');
+add_column_if_not_exists($conn, 'skills', 'icon_image VARCHAR(255)');
+add_column_if_not_exists($conn, 'skills', 'icon_class VARCHAR(100)');
+add_column_if_not_exists($conn, 'certificates', 'month VARCHAR(20)');
+add_column_if_not_exists($conn, 'certificates', 'year VARCHAR(10)');
+add_column_if_not_exists($conn, 'certificates', 'image VARCHAR(255)');
+add_column_if_not_exists($conn, 'certificates', 'keywords VARCHAR(255)');
+add_column_if_not_exists($conn, 'certificates', 'description TEXT');
+add_column_if_not_exists($conn, 'portfolio', 'tech_stack VARCHAR(255)');
+add_column_if_not_exists($conn, 'portfolio', 'client VARCHAR(255)');
+add_column_if_not_exists($conn, 'portfolio', 'project_date VARCHAR(50)');
+add_column_if_not_exists($conn, 'portfolio', 'additional_images TEXT');
+add_column_if_not_exists($conn, 'personal_info', 'hero_title VARCHAR(255)');
+add_column_if_not_exists($conn, 'personal_info', 'hero_tagline VARCHAR(255)');
+add_column_if_not_exists($conn, 'personal_info', 'github VARCHAR(255)');
 
 // Insert default Admin user if empty (password is 'admin123')
 $user_result = $conn->query("SELECT * FROM users");

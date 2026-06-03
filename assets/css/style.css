@@ -308,6 +308,17 @@ h1, h2, h3, h4, h5, h6, .page-title, .hero-title-main {
     color: var(--text-muted);
 }
 
+.social-link {
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.social-link:hover {
+    color: var(--accent);
+    transform: translateY(-3px);
+}
+
 /* =========================================
    SUBPAGE STYLES (About, Services, Portfolio)
    ========================================= */

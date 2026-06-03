@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_profile'])) {
     $email = $conn->real_escape_string($_POST['email']);
     $contact_number = $conn->real_escape_string($_POST['contact_number']);
     $linkedin = $conn->real_escape_string($_POST['linkedin']);
+    $github = $conn->real_escape_string($_POST['github']);
     
     $query = "UPDATE personal_info SET 
               hero_title = '$hero_title',
@@ -18,7 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_profile'])) {
               career_objective = '$career_objective',
               email = '$email', 
               contact_number = '$contact_number', 
-              linkedin = '$linkedin'";
+              linkedin = '$linkedin',
+              github = '$github'";
               
     if ($conn->query($query)) {
         $status = 'Profile settings updated successfully!';
@@ -65,17 +67,21 @@ $info = $info_result->fetch_assoc();
         <h5 class="mb-4">Contact Information</h5>
         
         <div class="row g-4">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label class="text-white mb-2">Email Address</label>
                 <input type="email" name="email" class="form-control" value="<?= htmlspecialchars($info['email']) ?>">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label class="text-white mb-2">Phone Number</label>
                 <input type="text" name="contact_number" class="form-control" value="<?= htmlspecialchars($info['contact_number']) ?>">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label class="text-white mb-2">LinkedIn URL</label>
                 <input type="url" name="linkedin" class="form-control" value="<?= htmlspecialchars($info['linkedin']) ?>">
+            </div>
+            <div class="col-md-3">
+                <label class="text-white mb-2">GitHub URL</label>
+                <input type="url" name="github" class="form-control" value="<?= htmlspecialchars($info['github'] ?? '') ?>">
             </div>
         </div>
     </div>

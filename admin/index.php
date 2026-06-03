@@ -18,6 +18,7 @@ $unread_msgs = $msg_res ? $msg_res->fetch_assoc()['unread'] : 0;
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Steve</title>
     <link rel="icon" href="../assets/images/favicon.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -157,6 +158,27 @@ $unread_msgs = $msg_res ? $msg_res->fetch_assoc()['unread'] : 0;
         
         /* Hide old HTML status alerts since we use SweetAlert globally */
         .main-content > .alert { display: none !important; }
+        
+        @media (max-width: 768px) {
+            .admin-wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .main-content {
+                padding: 20px;
+                max-height: none;
+                overflow-y: visible;
+            }
+            .admin-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
     </style>
 </head>
 <body>

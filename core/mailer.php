@@ -1,11 +1,7 @@
 <?php
 function send_brevo_email(string $to_email, string $to_name, string $subject, string $html_content) {
-    if (file_exists(__DIR__ . '/key.php')) {
-        require __DIR__ . '/key.php';
-    } else {
-        $brevo_api_key = ''; // Fallback if key file is missing
-    }
-    $api_key = $brevo_api_key;
+    // WARNING: Use environment variables or secure config for API keys in production
+    $api_key = getenv('BREVO_API_KEY') ?: 'YOUR_API_KEY_HERE';
     
     $data = array(
         "sender" => array(
@@ -40,3 +36,4 @@ function send_brevo_email(string $to_email, string $to_name, string $subject, st
     
     return $result;
 }
+?>
